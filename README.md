@@ -4,6 +4,13 @@
 `δ > 0`. Hence RH ⟺ `ψ(x) = x + O(x^{1/2+δ})` ∀δ > 0, and the zero-free half-plane `Re s > 7/8`
 (OpenAI 2026, a stated hypothesis here) gives `ψ(x) = x + O(x^{7/8+δ})`.
 
+**Second entry (same repository):** primes in progressions — if `ζ` and all `L(s,χ)` mod `q`
+are zero-free right of `θ`, then `ψ(x; q, a) = x/φ(q) + O(x^{θ+δ})`; with OpenAI's Dirichlet
+theorem as hypothesis, `O(x^{7/8+δ})`. Files: [`ChallengeAP.lean`](ChallengeAP.lean),
+[`SolutionAP.lean`](SolutionAP.lean), [`comparatorAP.json`](comparatorAP.json),
+[`formalization-ap.yaml`](formalization-ap.yaml) (submit with the non-default Comparator-config
+and metadata paths).
+
 **Read first:** [`Challenge.lean`](Challenge.lean) (≈50 lines, imports only Mathlib, no new
 definitions). Proofs: [`Solution.lean`](Solution.lean) → `PalomarIngham/`.
 
@@ -13,9 +20,10 @@ definitions). Proofs: [`Solution.lean`](Solution.lean) → `PalomarIngham/`.
 lake exe cache get
 lake build                 # all targets; only Challenge.lean has (deliberate) sorry
 lake comparator            # Lean v4.35.0 built-in Comparator (needs bubblewrap)
+lake comparator --config=comparatorAP.json
 ```
 
-Last run (this machine): `Lean default kernel accepts the solution — Your solution is okay!`
+Last run (this machine), both configs: `Lean default kernel accepts the solution — Your solution is okay!`
 
 ## Layout
 
@@ -25,6 +33,7 @@ Last run (this machine): `Lean default kernel accepts the solution — Your solu
 | `formalization.yaml` | metadata (fill the `TEMPLATE` person fields before submitting) |
 | `PalomarIngham/QuasiRH/` | easy direction (partial summation, Mellin holomorphy, identity theorem), RH ⟺ zero-free right of ½ |
 | `PalomarIngham/Ingham/` | hard direction: log-derivative bound (Borel–Carathéodory), contour bounds, assembly |
+| `PalomarIngham/Dirichlet/` | the same for `L(s,χ)`, `χ ≠ 1`: continuation to `Re s > 0` with growth bound, log-derivative bound, twisted smoothing and contour shift, assembly; orthogonality → progressions |
 | `PalomarIngham/Vendor/PNT/` | 13 files of PrimeNumberTheoremAnd @ `127b50e` (Apache-2.0), converted to the module system, blueprint annotations removed |
 
 Toolchain `leanprover/lean4:v4.35.0`, Mathlib `v4.35.0` (`56a0058…`), matching as Palomar
@@ -35,7 +44,7 @@ requires (minimum toolchain `v4.35.0-rc2`). Every `.lean` file is a `module`, th
 
 Developed in `../Formal` (chapters 1–5) and `../FormalPNT` (chapter 6) against OpenAI's exact
 pins (Lean v4.34.1, Mathlib `d13f23b`), then ported here. One fidelity bug was caught while
-writing the Challenge: an unannotated `∀ δ > 0` elaborated `δ` as a **natural number** (making
+writing the Challenge (and again in the Dirichlet `Main`): an unannotated `∀ δ > 0` elaborated `δ` as a **natural number** (making
 `1/2 + δ` mean `0 + δ`); Comparator's type check exposed it, and the Challenge now says
 `∀ δ : ℝ, 0 < δ → …`.
 
