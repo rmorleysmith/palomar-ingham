@@ -1,0 +1,10 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "PalomarIngham.zeta_ne_zero_iff_psi_error",
+    "PalomarIngham.riemannHypothesis_iff_psi_error",
+    "PalomarIngham.psi_error_of_zeta_ne_zero_seven_eighths"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

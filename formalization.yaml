@@ -1,0 +1,142 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4.
+# BEFORE SUBMITTING: replace the two TEMPLATE person entries (authors, responsible_maintainers)
+# and the review reviewer entry with the real names, and fill in automation cost if known.
+version: "v0.4"
+
+project:
+  name: "Ingham's theorem: zero-free half-planes of the Riemann zeta function and the error term in the prime number theorem"
+  description: >-
+    For 1/2 ≤ θ < 1, the Riemann zeta function has no zeros with real part greater than θ
+    if and only if Chebyshev's ψ(x) = x + O(x^{θ+δ}) for every δ > 0. Consequences: the
+    Riemann hypothesis is equivalent to ψ(x) = x + O(x^{1/2+δ}) for all δ > 0, and the
+    zero-free half-plane Re s > 7/8 (proved by OpenAI in 2026, used here as an explicitly
+    stated hypothesis) yields ψ(x) = x + O(x^{7/8+δ}). Both directions are proved: the easy
+    direction by partial summation and holomorphy of a Mellin transform; the hard direction by
+    a smoothed Chebyshev function, a contour shift to a vertical line inside the zero-free
+    half-plane, and a bound ζ'/ζ(σ+it) ≪ log|t| obtained from the Borel–Carathéodory theorem.
+  authors:
+    - "TEMPLATE: formalizer name"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "TEMPLATE: person responsible for this formalization"
+
+classification:
+  arxiv: ["math.NT"]
+  msc2020: ["11M26", "11N05", "11M06"]
+
+sources:
+  - title: "The Distribution of Prime Numbers"
+    authors:
+      - "A. E. Ingham"
+    id: "Cambridge Tracts in Mathematics and Mathematical Physics 30 (1932)"
+    type: "book"
+    location: "Cambridge University Press, 1932; Chapter IV"
+    relationship: "independently-proves"
+    note: >-
+      The equivalence between zero-free half-planes and power-saving error terms is classical
+      (Ingham, Ch. IV; Titchmarsh, The Theory of the Riemann Zeta-Function, §14). The Lean proof
+      follows the standard smoothed-Perron route rather than any particular text.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Über die Verteilung der Primzahlen"
+    authors:
+      - "H. von Koch"
+    id: "Acta Mathematica 24 (1901), 159–182"
+    type: "article"
+    relationship: "background"
+    note: "The case θ = 1/2 (RH ⟺ square-root error term)."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "A quasi-Riemann hypothesis for Dirichlet L-functions (OpenAI, 2026), Lean formalisation"
+    authors:
+      - "OpenAI"
+    id: "https://github.com/openai/math/blob/1581d4cbdd69a0faf34b2089614fe2a814316a6a/lean/OAI/NumberTheory/DirichletL/Nonvanishing.lean"
+    type: "formalization"
+    relationship: "background"
+    note: >-
+      The hypothesis of psi_error_of_zeta_ne_zero_seven_eighths is the exact statement of
+      OpenAI's comparator challenge OAI.riemannZeta_ne_zero_of_seven_eighths_lt_re. OpenAI's
+      proof is NOT imported; the theorem here is conditional on that statement.
+    license: "Apache-2.0"
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/tree/127b50e33f6033e2147921167a117af96d9ba4ea"
+    relationship: "builds-on"
+    note: >-
+      The smoothed Chebyshev function, the contour-shift lemma (SmoothedChebyshevPull1), the
+      Mellin bounds for the smoothing and the bounds for the far vertical contour pieces are
+      taken from PrimeNumberTheoremAnd's MediumPNT development (vendored under
+      PalomarIngham/Vendor/PNT, converted to the module system, Apache-2.0). Several
+      complex-analysis lemmas (Borel–Carathéodory for derivatives, holomorphic logarithm on a
+      disc) are adapted from PrimeNumberTheoremAnd's StrongPNT.lean, with credit in the file.
+
+status:
+  scope: >-
+    Fully proved: the equivalence for 1/2 ≤ θ < 1, the RH equivalence, and the conditional
+    7/8 statement. Not formalised: the sharper classical error term O(x^θ log² x), which needs
+    zero-counting estimates; the unconditional 7/8 result, which would require importing
+    OpenAI's (separate) Lean proof of the zero-free half-plane. The restriction θ ≥ 1/2 is used
+    only for a polynomial bound on ζ in the discs of the Borel–Carathéodory argument; no
+    zero-free half-plane with θ < 1/2 exists, but Lean is not told this.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["claude (Anthropic) via DeepSeek Harness"]
+      framework: "DeepSeek Harness subagents"
+      tool_setup: >-
+        A coordinating agent fixed the interfaces (Props for each analytic estimate) and wrote
+        the easy direction; three subagents proved the log-derivative bound, the contour bounds,
+        and the assembly against those interfaces; every piece was re-checked by the
+        coordinator with #print axioms. A further subagent ported the development to the Lean
+        module system and vendored PrimeNumberTheoremAnd.
+      cost:
+        wall_time: "about one working day"
+        spend_usd: "not tracked"
+        hardware: "local machine"
+      prompting_notes: "Proof plans in natural language with exact Mathlib/PNT+ lemma names."
+  spend_usd: "not tracked"
+  notes: >-
+    Human direction and review by the responsible maintainer; mathematical plan, statements and
+    audits by the coordinating agent; proofs by subagents. All statements were audited for
+    non-vacuity (e.g. ψ(x) - x = O(x^{-3}) is refuted in-project via the trivial zero ζ(-2) = 0,
+    and ψ(x) - x = O(x) is proved).
+
+fidelity:
+  divergences: "δ-form (x^{θ+δ} for every δ > 0) instead of the sharper x^θ log² x; θ restricted to [1/2, 1)."
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "TEMPLATE: reviewer name, or none"
+  notes: >-
+    Statements audited against Ingham Ch. IV and Titchmarsh §14; Challenge uses only Mathlib
+    definitions (Chebyshev.psi, riemannZeta, RiemannHypothesis, Asymptotics.IsBigO).
+
+alignment:
+  namespace: "PalomarIngham"
+  statements:
+    - source: "Ingham (1932), Ch. IV — zero-free half-plane ⟺ error exponent"
+      lean: "PalomarIngham.zeta_ne_zero_iff_psi_error"
+      module: "Challenge"
+      status: "proved"
+      note: "δ-form; 1/2 ≤ θ < 1."
+    - source: "von Koch (1901) — RH ⟺ square-root error term"
+      lean: "PalomarIngham.riemannHypothesis_iff_psi_error"
+      module: "Challenge"
+      status: "proved"
+      note: "δ-form."
+    - source: "Consequence of OpenAI (2026), zero-free half-plane Re s > 7/8"
+      lean: "PalomarIngham.psi_error_of_zeta_ne_zero_seven_eighths"
+      module: "Challenge"
+      status: "proved (conditional on the stated hypothesis)"
+      note: "Hypothesis stated verbatim as in OpenAI's comparator challenge."
+
+acknowledgements: >-
+  Mathlib; PrimeNumberTheoremAnd (A. Kontorovich, T. Tao and contributors), whose MediumPNT
+  infrastructure is vendored here under Apache-2.0; OpenAI for the 7/8 zero-free half-plane.
