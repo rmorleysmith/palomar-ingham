@@ -1,0 +1,9 @@
+{
+  "challenge_module": "ChallengeAP",
+  "solution_module": "SolutionAP",
+  "theorem_names": [
+    "PalomarInghamAP.psi_ap_error_of_zero_free",
+    "PalomarInghamAP.psi_ap_error_of_seven_eighths"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

@@ -1,6 +1,6 @@
 name = "PalomarIngham"
 version = "0.1.0"
-defaultTargets = ["PalomarIngham", "Challenge", "Solution"]
+defaultTargets = ["PalomarIngham", "Challenge", "Solution", "ChallengeAP", "SolutionAP"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -20,3 +20,9 @@ name = "Challenge"
 
 [[lean_lib]]
 name = "Solution"
+
+[[lean_lib]]
+name = "ChallengeAP"
+
+[[lean_lib]]
+name = "SolutionAP"
