@@ -14,6 +14,25 @@ and metadata paths).
 **Read first:** [`Challenge.lean`](Challenge.lean) (≈50 lines, imports only Mathlib, no new
 definitions). Proofs: [`Solution.lean`](Solution.lean) → `PalomarIngham/`.
 
+## How AI was used
+
+The ideas in this work are Richard Morley-Smith's: the questions, the links between areas of
+mathematics, and the choices of what to pursue. AI was used as a tool, in two phases.
+
+- **May–June 2026, the original exploration.** The exploration was carried out in conversation
+  with AI coding assistants, chiefly Anthropic's Claude through Claude Code (the design document
+  also quotes Google's Gemini). The assistants wrote most of the code, Lean files and documents
+  from the author's ideas and direction, quickly and without later editing. Those files are kept
+  unchanged in [hsln-archive](https://github.com/rmorleysmith/hsln-archive).
+- **October 2026 onwards.** Claude, through Claude Code, helps the author formalise the ideas in
+  Lean 4, audit and tidy the earlier files, and write out the working: the steps between an
+  intuition and a precise statement.
+
+Checking the results does not rely on trusting the AI. Every Lean theorem is verified by the
+Lean kernel against Mathlib, and `#print axioms` shows only Lean's three standard axioms. Every
+script asserts the numbers it reports and can be rerun. Every grade in the audit cites the
+evidence it rests on.
+
 ## Check it
 
 ```bash
