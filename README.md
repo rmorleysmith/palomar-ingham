@@ -49,7 +49,7 @@ Last run (this machine), both configs: `Lean default kernel accepts the solution
 | Path | Content |
 |---|---|
 | `Challenge.lean`, `Solution.lean`, `comparator.json` | the Palomar triple |
-| `formalization.yaml` | metadata (fill the `TEMPLATE` person fields before submitting) |
+| `formalization.yaml` | metadata Palomar requires (authors, sources, AI use, scope) |
 | `PalomarIngham/QuasiRH/` | easy direction (partial summation, Mellin holomorphy, identity theorem), RH ⟺ zero-free right of ½ |
 | `PalomarIngham/Ingham/` | hard direction: log-derivative bound (Borel–Carathéodory), contour bounds, assembly |
 | `PalomarIngham/Dirichlet/` | the same for `L(s,χ)`, `χ ≠ 1`: continuation to `Re s > 0` with growth bound, log-derivative bound, twisted smoothing and contour shift, assembly; orthogonality → progressions |
@@ -69,7 +69,10 @@ writing the Challenge (and again in the Dirichlet `Main`): an unannotated `∀ �
 
 ## To submit (requires the human maintainer)
 
-1. Fill the `TEMPLATE` fields in `formalization.yaml`.
-2. Push this directory as a public GitHub repository (root = this directory), commit everything
-   including `lake-manifest.json`, copy the 40-character SHA.
-3. Submit at <https://submit.palomar-registry.org/> and keep the status page link.
+The repository is public and both metadata files are complete. For each entry:
+
+1. Copy the full 40-character SHA of the commit to submit (`git rev-parse HEAD`).
+2. Open <https://submit.palomar-registry.org/>, sign in with GitHub, and enter the repository and
+   SHA. For the second entry, give `comparatorAP.json` and `formalization-ap.yaml` as the
+   non-default paths.
+3. Keep the status page link; it is the only way back to the submission.

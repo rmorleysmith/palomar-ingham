@@ -1,7 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 # formalization.yaml v0.4.
-# BEFORE SUBMITTING: replace the two TEMPLATE person entries (authors, responsible_maintainers)
-# and the review reviewer entry with the real names, and fill in automation cost if known.
 version: "v0.4"
 
 project:
@@ -17,10 +15,10 @@ project:
     Borel–Carathéodory after continuing L to Re s > 0 with a polynomial growth bound, then
     orthogonality of characters and the ζ case for the trivial character.
   authors:
-    - "TEMPLATE: formalizer name"
+    - "Richard Morley-Smith"
   license: "Apache-2.0"
   responsible_maintainers:
-    - "TEMPLATE: person responsible for this formalization"
+    - "Richard Morley-Smith"
 
 classification:
   arxiv: ["math.NT"]
@@ -85,8 +83,8 @@ status:
 automation:
   methods:
     - method: "agent"
-      models: ["claude (Anthropic) via DeepSeek Harness"]
-      framework: "DeepSeek Harness subagents"
+      models: ["Claude (Anthropic)"]
+      framework: "Claude Code (coordinating agent and subagents)"
       tool_setup: >-
         A coordinating agent fixed the interfaces (Props for each analytic estimate) and wrote
         the easy direction; three subagents proved the log-derivative bound, the contour bounds,
@@ -110,8 +108,7 @@ fidelity:
 
 review:
   status: "self-assessed"
-  reviewers:
-    - "TEMPLATE: reviewer name, or none"
+  reviewers: []
   notes: >-
     Statements audited against Ingham Ch. IV and Titchmarsh §14; Challenge uses only Mathlib
     definitions (Chebyshev.psi, riemannZeta, RiemannHypothesis, Asymptotics.IsBigO).
