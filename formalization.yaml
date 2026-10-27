@@ -80,7 +80,7 @@ status:
     zero-free half-plane with θ < 1/2 exists, but Lean is not told this.
   sorry_count: 0
   sorry_in_definitions: 0
-  axioms: []
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
 
 automation:
   methods:

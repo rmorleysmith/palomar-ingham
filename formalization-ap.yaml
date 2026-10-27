@@ -78,7 +78,7 @@ status:
     sharper x^θ log² x form, and the unconditional 7/8 result (OpenAI's proof is not imported).
   sorry_count: 0
   sorry_in_definitions: 0
-  axioms: []
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
 
 automation:
   methods:
