@@ -61,8 +61,9 @@ requires (minimum toolchain `v4.35.0-rc2`). Every `.lean` file is a `module`, th
 
 ## Provenance
 
-Developed in `../Formal` (chapters 1–5) and `../FormalPNT` (chapter 6) against OpenAI's exact
-pins (Lean v4.34.1, Mathlib `d13f23b`), then ported here. One fidelity bug was caught while
+Developed in [fugue-formal](https://github.com/rmorleysmith/fugue-formal) (chapters 1–5) and
+[fugue-formal-pnt](https://github.com/rmorleysmith/fugue-formal-pnt) (chapter 6) against OpenAI's
+exact pins (Lean v4.34.1, Mathlib `d13f23b`), then ported here. One fidelity bug was caught while
 writing the Challenge (and again in the Dirichlet `Main`): an unannotated `∀ δ > 0` elaborated `δ` as a **natural number** (making
 `1/2 + δ` mean `0 + δ`); Comparator's type check exposed it, and the Challenge now says
 `∀ δ : ℝ, 0 < δ → …`.

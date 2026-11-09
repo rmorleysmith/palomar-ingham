@@ -86,22 +86,22 @@ automation:
       models: ["Claude (Anthropic)"]
       framework: "Claude Code (coordinating agent and subagents)"
       tool_setup: >-
-        A coordinating agent fixed the interfaces (Props for each analytic estimate) and wrote
-        the easy direction; three subagents proved the log-derivative bound, the contour bounds,
-        and the assembly against those interfaces; every piece was re-checked by the
-        coordinator with #print axioms. A further subagent ported the development to the Lean
-        module system and vendored PrimeNumberTheoremAnd.
+        Builds on the companion ζ entry in the same repository (formalization.yaml) and its
+        vendored PrimeNumberTheoremAnd infrastructure. The coordinating agent fixed the interfaces
+        (Props for each analytic estimate) and wrote the orthogonality and trivial-character
+        reduction, the contour bounds, the assembly and the final theorems; two subagents proved
+        the log-derivative bound for L(s, χ) and the twisted smoothing and contour shift against
+        those interfaces; every piece was re-checked by the coordinator with #print axioms.
       cost:
-        wall_time: "about one working day"
+        wall_time: "about one working day, after the companion entry"
         spend_usd: "not tracked"
         hardware: "local machine"
       prompting_notes: "Proof plans in natural language with exact Mathlib/PNT+ lemma names."
   spend_usd: "not tracked"
   notes: >-
     Human direction and review by the responsible maintainer; mathematical plan, statements and
-    audits by the coordinating agent; proofs by subagents. All statements were audited for
-    non-vacuity (e.g. ψ(x) - x = O(x^{-3}) is refuted in-project via the trivial zero ζ(-2) = 0,
-    and ψ(x) - x = O(x) is proved).
+    audits by the coordinating agent; proofs by the coordinating agent and subagents. The
+    trivial character is handled by the ζ case of the companion entry.
 
 fidelity:
   divergences: "δ-form; θ restricted to [1/2, 1); fixed modulus (no uniformity in q)."
@@ -110,8 +110,10 @@ review:
   status: "self-assessed"
   reviewers: []
   notes: >-
-    Statements audited against Ingham Ch. IV and Titchmarsh §14; Challenge uses only Mathlib
-    definitions (Chebyshev.psi, riemannZeta, RiemannHypothesis, Asymptotics.IsBigO).
+    Statements audited against Ingham Ch. IV and Titchmarsh §14; ChallengeAP uses only Mathlib
+    definitions (riemannZeta, DirichletCharacter.LFunction, ArithmeticFunction.vonMangoldt,
+    Nat.totient, Asymptotics.IsBigO). The 7/8 hypothesis was checked to match
+    lean/ComparatorChallenges/DirichletSevenEighths.lean in openai/math at commit 1581d4c.
 
 alignment:
   namespace: "PalomarInghamAP"
