@@ -8,8 +8,9 @@
 are zero-free right of `θ`, then `ψ(x; q, a) = x/φ(q) + O(x^{θ+δ})`; with OpenAI's Dirichlet
 theorem as hypothesis, `O(x^{7/8+δ})`. Files: [`ChallengeAP.lean`](ChallengeAP.lean),
 [`SolutionAP.lean`](SolutionAP.lean), [`comparatorAP.json`](comparatorAP.json),
-[`formalization-ap.yaml`](formalization-ap.yaml) (submit with the non-default Comparator-config
-and metadata paths).
+[`ap/formalization.yaml`](ap/formalization.yaml) (submit with the non-default Comparator-config
+and metadata paths; Palomar requires the metadata file to be named `formalization.yaml`, so the
+second entry's file lives in the folder `ap/`).
 
 **Read first:** [`Challenge.lean`](Challenge.lean) (≈50 lines, imports only Mathlib, no new
 definitions). Proofs: [`Solution.lean`](Solution.lean) → `PalomarIngham/`.
@@ -74,6 +75,6 @@ The repository is public and both metadata files are complete. For each entry:
 
 1. Copy the full 40-character SHA of the commit to submit (`git rev-parse HEAD`).
 2. Open <https://submit.palomar-registry.org/>, sign in with GitHub, and enter the repository and
-   SHA. For the second entry, give `comparatorAP.json` and `formalization-ap.yaml` as the
+   SHA. For the second entry, give `comparatorAP.json` and `ap/formalization.yaml` as the
    non-default paths.
 3. Keep the status page link; it is the only way back to the submission.
